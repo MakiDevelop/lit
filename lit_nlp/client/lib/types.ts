@@ -44,6 +44,8 @@ export interface LitType {
   default? : string|string[]|number|number[];
   spec?: string;
   type?: LitName;
+  min_val?: number;
+  max_val?: number;
 }
 
 export interface Spec {

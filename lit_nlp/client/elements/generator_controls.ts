@@ -143,6 +143,20 @@ export class GeneratorControls extends LitElement {
         ${options}
       </select>`;
     }
+    else if (isLitSubtype(controlType, ['Scalar'])) {
+      // Render a dropdown, with the first item selected.
+      const updateDropdown = (e: Event) => {
+        const input = (e.target as HTMLInputElement);
+        this.settings[name] = input.value;
+      };
+      const minVal = controlType.min_val!;
+      const maxVal = controlType.max_val!;
+      const defaultValue = controlType.default! as string;
+      return html`
+      <input type="number" min="${minVal}" max="${maxVal}"
+        .value=${defaultValue}
+        @change=${updateDropdown}>`;
+    }
     else {
       // Render a text input box.
       const value = this.settings[name] || '';
